@@ -1,0 +1,168 @@
+[gd_scene load_steps=18 format=3 uid="uid://k1i7bp7bww6a"]
+
+[ext_resource type="Script" path="res://Scripts/level.gd" id="1_afvj5"]
+[ext_resource type="Texture2D" uid="uid://bgxypvoj0hxo1" path="res://Assets/Sprite Sheets/pastel-resting.png" id="2_47pdj"]
+[ext_resource type="Texture2D" uid="uid://df74l450vwex1" path="res://Assets/UI/normalbutton.png" id="2_sotyk"]
+[ext_resource type="Texture2D" uid="uid://8hs73agswwbm" path="res://Assets/UI/pressedbutton.png" id="3_awxmr"]
+[ext_resource type="Script" path="res://Scripts/AnimateMenu.gd" id="3_gitgv"]
+[ext_resource type="Texture2D" uid="uid://dpjk5hyobbksf" path="res://Assets/UI/hoverbutton.png" id="4_hk3ml"]
+[ext_resource type="Texture2D" uid="uid://cudbkej8e2lna" path="res://Assets/UI/normalbutton_options.png" id="5_ndho8"]
+[ext_resource type="Texture2D" uid="uid://53qywosauor0" path="res://Assets/UI/pressedbutton_options.png" id="6_f3sy7"]
+[ext_resource type="Texture2D" uid="uid://b0b4a00yg0rn0" path="res://Assets/UI/hoverbutton_options.png" id="7_o3wac"]
+[ext_resource type="Texture2D" uid="uid://c76t0lb7awt0x" path="res://Assets/UI/normalbutton_quit.png" id="8_2adrc"]
+[ext_resource type="Texture2D" uid="uid://csmcaqnniol5a" path="res://Assets/UI/pressedbutton_quit.png" id="9_gby8i"]
+[ext_resource type="Texture2D" uid="uid://boau7b31eq8b7" path="res://Assets/UI/hoverbutton_quit.png" id="10_t6pq8"]
+[ext_resource type="AudioStream" uid="uid://doxt15jgi6oh0" path="res://Assets/Audio/menuselect.wav" id="13_v4rth"]
+[ext_resource type="Texture2D" uid="uid://dhroloklc36nc" path="res://Assets/UI/title_justtext.png" id="14_gwl2v"]
+
+[sub_resource type="Animation" id="Animation_3pqf7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [14]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_47pdj")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_wscbq"]
+resource_name = "menurelax"
+length = 1.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [14]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_47pdj")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cg0bt"]
+_data = {
+"RESET": SubResource("Animation_3pqf7"),
+"menurelax": SubResource("Animation_wscbq")
+}
+
+[node name="Main Menu" type="Node2D"]
+script = ExtResource("1_afvj5")
+next_level_name = "level_1"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -40.0
+offset_top = -33.0
+offset_right = 1993.0
+offset_bottom = 1111.0
+color = Color(0.588235, 0.505882, 0.505882, 1)
+
+[node name="RelaxBro" type="Sprite2D" parent="."]
+position = Vector2(641, 874)
+scale = Vector2(35, 35)
+texture = ExtResource("2_47pdj")
+hframes = 14
+script = ExtResource("3_gitgv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RelaxBro"]
+libraries = {
+"": SubResource("AnimationLibrary_cg0bt")
+}
+
+[node name="PlayButton" type="TextureButton" parent="."]
+offset_left = 1123.0
+offset_top = 71.0
+offset_right = 1891.0
+offset_bottom = 359.0
+texture_normal = ExtResource("2_sotyk")
+texture_pressed = ExtResource("3_awxmr")
+texture_hover = ExtResource("4_hk3ml")
+
+[node name="OptionsButton" type="TextureButton" parent="."]
+offset_left = 1121.0
+offset_top = 337.0
+offset_right = 1889.0
+offset_bottom = 625.0
+texture_normal = ExtResource("5_ndho8")
+texture_pressed = ExtResource("6_f3sy7")
+texture_hover = ExtResource("7_o3wac")
+
+[node name="QuitButton" type="TextureButton" parent="."]
+offset_left = 1121.0
+offset_top = 604.0
+offset_right = 1889.0
+offset_bottom = 892.0
+texture_normal = ExtResource("8_2adrc")
+texture_pressed = ExtResource("9_gby8i")
+texture_hover = ExtResource("10_t6pq8")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_v4rth")
+volume_db = -17.415
+bus = &"SFX"
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(337, 250)
+texture = ExtResource("14_gwl2v")
+
+[connection signal="mouse_entered" from="PlayButton" to="." method="_on_play_button_mouse_entered"]
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="mouse_entered" from="OptionsButton" to="." method="_on_options_button_mouse_entered"]
+[connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="mouse_entered" from="QuitButton" to="." method="_on_quit_button_mouse_entered"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

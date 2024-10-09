@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://vm20h3euohvq"]
+
+[ext_resource type="PackedScene" uid="uid://k1i7bp7bww6a" path="res://Scenes/main_menu.tscn" id="1_pbpof"]
+[ext_resource type="Script" path="res://Scenes/scene_switcher.gd" id="1_s7fn1"]
+[ext_resource type="PackedScene" uid="uid://bt64s08gl078v" path="res://Scenes/level_1.tscn" id="2_nhtjb"]
+[ext_resource type="PackedScene" uid="uid://ckni0uwdt7rdx" path="res://Scenes/level_2.tscn" id="3_j4fcv"]
+[ext_resource type="Script" path="res://Scripts/level.gd" id="3_y0h6k"]
+
+[node name="SceneSwitcher" type="Node"]
+script = ExtResource("1_s7fn1")
+
+[node name="Main Menu" parent="." instance=ExtResource("1_pbpof")]
+level_name = "mainmenu"
+
+[node name="level1" parent="." instance=ExtResource("2_nhtjb")]
+script = ExtResource("3_y0h6k")
+level_name = "level1"
+
+[node name="level2" parent="." instance=ExtResource("3_j4fcv")]
+script = ExtResource("3_y0h6k")
+level_name = "level2"

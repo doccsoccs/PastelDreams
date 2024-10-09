@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://b7mu4w4vbjgjn"]
+
+[ext_resource type="Texture2D" uid="uid://bcuq0mdgpiil7" path="res://Assets/UI/SLIDER/slider_bar.png" id="1_aqg6v"]
+[ext_resource type="Script" path="res://Scenes/Dialogue/dialogue_player.gd" id="1_rn3sq"]
+[ext_resource type="Texture2D" uid="uid://b1dt2hf26ufyc" path="res://Assets/Characters/pastel_headshot.png" id="2_em73j"]
+[ext_resource type="FontFile" uid="uid://bhs3ipvoav7qv" path="res://Assets/Fonts/dpcomic.ttf" id="2_m2oom"]
+[ext_resource type="Texture2D" uid="uid://bycla0xxty3hw" path="res://Assets/Characters/noir_headshot.png" id="3_b3kv7"]
+[ext_resource type="AudioStream" uid="uid://coj8wdy4tgyg" path="res://Assets/Audio/TextBlip/pastel_text_blip.wav" id="4_fv0hn"]
+[ext_resource type="AudioStream" uid="uid://ddo13p58vd0t8" path="res://Assets/Audio/TextBlip/noir_text_blip.wav" id="5_qeo2n"]
+
+[node name="Dialogue" type="CanvasLayer"]
+process_mode = 2
+script = ExtResource("1_rn3sq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1968.0
+offset_bottom = 1147.0
+color = Color(0, 0, 0, 0.623529)
+
+[node name="PastelHeadshot" type="Sprite2D" parent="."]
+position = Vector2(467, 450)
+texture = ExtResource("2_em73j")
+
+[node name="NoirHeadshot" type="Sprite2D" parent="."]
+position = Vector2(1458, 446)
+texture = ExtResource("3_b3kv7")
+
+[node name="TextBubble" type="NinePatchRect" parent="."]
+anchors_preset = -1
+anchor_left = 0.116
+anchor_right = 0.899
+anchor_bottom = 1.0
+offset_left = 34.28
+offset_top = 697.0
+offset_right = -49.0801
+offset_bottom = -55.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_aqg6v")
+patch_margin_left = 25
+patch_margin_top = 17
+patch_margin_right = 25
+patch_margin_bottom = 17
+
+[node name="Text" type="RichTextLabel" parent="TextBubble"]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 100.0
+offset_right = 1367.0
+offset_bottom = 287.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("2_m2oom")
+theme_override_font_sizes/normal_font_size = 40
+text = "Text"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Name" type="RichTextLabel" parent="TextBubble"]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 33.0
+offset_right = 384.0
+offset_bottom = 93.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("2_m2oom")
+theme_override_font_sizes/normal_font_size = 64
+text = "Name"
+
+[node name="PastelBlip" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_fv0hn")
+volume_db = -18.0
+bus = &"SFX"
+
+[node name="NoirBlip" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_qeo2n")
+volume_db = -22.0
+bus = &"SFX"

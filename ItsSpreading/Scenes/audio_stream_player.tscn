@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cn8drty1pofd0"]
+
+[ext_resource type="AudioStream" uid="uid://beskwdo31fdpm" path="res://Assets/Audio/Music/pasteldreams.mp3" id="1_i05po"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_i05po")
+autoplay = true
+bus = &"Music"

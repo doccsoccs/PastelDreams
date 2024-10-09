@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce01wuwf7h0h8"]
+
+[ext_resource type="Script" path="res://Scripts/recharged_attack_particles.gd" id="1_y2i4s"]
+
+[sub_resource type="Curve" id="Curve_xib3m"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.252632), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="RechargedAttackParticles" type="CPUParticles2D"]
+z_as_relative = false
+emitting = false
+amount = 60
+one_shot = true
+speed_scale = 4.0
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 48.0
+initial_velocity_max = 50.0
+scale_amount_min = 10.0
+scale_amount_max = 15.0
+scale_amount_curve = SubResource("Curve_xib3m")
+color = Color(0.898039, 0.690196, 1, 1)
+script = ExtResource("1_y2i4s")

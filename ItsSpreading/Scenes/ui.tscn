@@ -1,0 +1,113 @@
+[gd_scene load_steps=11 format=3 uid="uid://dhio3p2pwwtor"]
+
+[ext_resource type="Script" path="res://Scripts/ui.gd" id="1_5n5uo"]
+[ext_resource type="Texture2D" uid="uid://oyj6q5bf4ge3" path="res://Assets/UI/normalbutton_return.png" id="2_g5y07"]
+[ext_resource type="Texture2D" uid="uid://bcuq0mdgpiil7" path="res://Assets/UI/SLIDER/slider_bar.png" id="2_jjoef"]
+[ext_resource type="Texture2D" uid="uid://cs63i6pps7cli" path="res://Assets/UI/SLIDER/slider_grabber_normal.png" id="2_vks7d"]
+[ext_resource type="Texture2D" uid="uid://btetvk8lyo0jp" path="res://Assets/UI/pressedbutton_return.png" id="3_6vxy4"]
+[ext_resource type="Texture2D" uid="uid://i7xoirqypb02" path="res://Assets/UI/SLIDER/slider_grabber_selected.png" id="3_kou8v"]
+[ext_resource type="Texture2D" uid="uid://m6dpl0rebrln" path="res://Assets/UI/SLIDER/music.png" id="3_p7pnd"]
+[ext_resource type="Texture2D" uid="uid://b5avlky42ubho" path="res://Assets/UI/hoverbutton_return.png" id="4_k73ee"]
+[ext_resource type="AudioStream" uid="uid://doxt15jgi6oh0" path="res://Assets/Audio/menuselect.wav" id="5_5il3r"]
+[ext_resource type="Texture2D" uid="uid://cenl7ew2f71x5" path="res://Assets/UI/SLIDER/sfx.png" id="6_eyl4f"]
+
+[node name="UI" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_5n5uo")
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.45098, 0.376471, 0.376471, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 353.0
+offset_top = 2.0
+offset_right = -415.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 256
+theme_override_constants/margin_right = 256
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="GridContainer" type="GridContainer" parent="Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 48
+columns = 2
+
+[node name="SliderBarMUSIC" type="Sprite2D" parent="Menu/MarginContainer/VBoxContainer/GridContainer"]
+position = Vector2(310, 33)
+texture = ExtResource("2_jjoef")
+
+[node name="SliderBarSFX" type="Sprite2D" parent="Menu/MarginContainer/VBoxContainer/GridContainer"]
+position = Vector2(310, 145)
+texture = ExtResource("2_jjoef")
+
+[node name="MusicLabel" type="TextureRect" parent="Menu/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("3_p7pnd")
+stretch_mode = 3
+
+[node name="MusicSlider" type="HSlider" parent="Menu/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_icons/grabber = ExtResource("2_vks7d")
+theme_override_icons/grabber_highlight = ExtResource("3_kou8v")
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="SFXLabel" type="TextureRect" parent="Menu/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("6_eyl4f")
+
+[node name="SFXSlider" type="HSlider" parent="Menu/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_icons/grabber = ExtResource("2_vks7d")
+theme_override_icons/grabber_highlight = ExtResource("3_kou8v")
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="ReturnButton" type="TextureButton" parent="Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_g5y07")
+texture_pressed = ExtResource("3_6vxy4")
+texture_hover = ExtResource("4_k73ee")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_5il3r")
+volume_db = -17.145
+bus = &"SFX"
+
+[connection signal="drag_ended" from="Menu/MarginContainer/VBoxContainer/GridContainer/MusicSlider" to="." method="_on_music_slider_drag_ended"]
+[connection signal="value_changed" from="Menu/MarginContainer/VBoxContainer/GridContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="drag_ended" from="Menu/MarginContainer/VBoxContainer/GridContainer/SFXSlider" to="." method="_on_sfx_slider_drag_ended"]
+[connection signal="value_changed" from="Menu/MarginContainer/VBoxContainer/GridContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="mouse_entered" from="Menu/MarginContainer/VBoxContainer/ReturnButton" to="." method="_on_return_button_mouse_entered"]
+[connection signal="pressed" from="Menu/MarginContainer/VBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]

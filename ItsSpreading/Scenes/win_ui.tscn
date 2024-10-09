@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3 uid="uid://bnj45ay171fxa"]
+
+[ext_resource type="AudioStream" uid="uid://b7h2g4uf1lum5" path="res://Assets/Audio/Music/level_win.mp3" id="1_14nrh"]
+[ext_resource type="Script" path="res://Scripts/win_ui.gd" id="1_ssnal"]
+[ext_resource type="Texture2D" uid="uid://cmb1jyd8ertph" path="res://Assets/UI/WinState/goodnight.png" id="2_ngjt3"]
+
+[sub_resource type="Animation" id="Animation_6v85j"]
+resource_name = "win"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Goodnight:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-731, 540), Vector2(960, 540)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"next_level"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_yp45h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Goodnight:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-731, 540)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3t36i"]
+_data = {
+"RESET": SubResource("Animation_yp45h"),
+"win": SubResource("Animation_6v85j")
+}
+
+[node name="WinUI" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_ssnal")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("1_14nrh")
+bus = &"SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3t36i")
+}
+
+[node name="Goodnight" type="Sprite2D" parent="."]
+position = Vector2(-731, 540)
+texture = ExtResource("2_ngjt3")
